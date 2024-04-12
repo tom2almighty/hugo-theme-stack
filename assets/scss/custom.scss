@@ -1,1 +1,414 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+/*---------------全局设置-------------*/
+:root {
+    --card-border-radius: 20px; //小卡片圆角
+    --article-font-size: 1.7rem; // 全局字体大小
+    //--card-background: #ffffff;//小卡片背景颜色
+    //--body-text-color: rgba(171, 169, 169, 0.58);//字体颜色
+    // 行内代码背景色
+    --code-background-color: #f8f8f8;
+    // 行内代码前景色
+    --code-text-color: #e96900;
+    // 暗色模式下样式
+    &[data-scheme="dark"] {
+      // 行内代码背景色
+      --code-background-color: #ff6d1b17;
+      // 行内代码前景色
+      --code-text-color: #e96900;
+      // 暗黑模式下背景色
+      --body-background: #303030;
+      // 暗黑模式下卡片背景色
+      --card-background: #424242;
+    }
+  
+  } 
+  /*选中文字颜色*/
+  ::selection {
+    color: #fff;
+    background: #557697;
+  }
+  
+  /*滚动条样式*/
+  html {
+    ::-webkit-scrollbar {
+      width: 18px;
+      //display: none; //隐藏滚动条
+    }
+  
+    ::-webkit-scrollbar-track {
+      //background-color: #fff; //滚动条背景颜色
+    }
+  
+    ::-webkit-scrollbar-thumb {
+      //鼠标移动上去前的滚动条颜色
+      background-color: rgba(111, 114, 115, 0.65); 
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
+  
+    ::-webkit-scrollbar-thumb:hover {
+      //鼠标移动上去时的滚动条颜色
+      background-color: #232525; 
+    }
+  }
+//---------------------------------------------------------
+
+//首页欢迎板块样式
+.welcome {
+    color: var(--card-text-color-main);
+    background: var(--card-background);
+    box-shadow: var(--shadow-l2);
+    border-radius: 30px;
+    display: inline-block;
+  }
+  
+  // 👋emoji实现摆动效果
+  .shake {
+    display: inline-block;
+    animation: shake 1s;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: shake;
+    animation-timeline: auto;
+    animation-range-start: normal;
+    animation-range-end: normal;
+    animation-delay: 2s;
+    @keyframes shake {
+      0% {
+        transform: rotate(0);
+      }
+      25% {
+        transform: rotate(45deg) scale(1.2);
+      }
+      50% {
+        transform: rotate(0) scale(1.2);
+      }
+      75% {
+        transform: rotate(45deg) scale(1.2);
+      }
+      100% {
+        transform: rotate(0);
+      }
+    }
+  }
+  // 实现字符跳动动画
+  .jump-text1 {
+    display: inline-block;
+    animation: jump 0.5s 1;
+  }
+  
+  .jump-text2 {
+    display: inline-block;
+    animation: jump 0.5s 1;
+    animation-delay: 0.1s;
+  }
+  
+  .jump-text3 {
+    display: inline-block;
+    animation: jump 0.5s 1;
+    animation-delay: 0.2s;
+  }
+  
+  .jump-text4 {
+    display: inline-block;
+    animation: jump 0.5s 1;
+    animation-delay: 0.3s;
+  }
+  
+  .jump-text5 {
+    display: inline-block;
+    animation: jump 0.5s 1;
+    animation-delay: 0.4s;
+  } 
+  @keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+//---------------------------
+
+/*主页布局间距调整*/
+.main-container {
+    gap: 50px; //文章宽度
+  
+    @include respond(md) {
+      padding: 0 30px;
+      gap: 40px; //中等屏幕时的文章宽度
+    }
+  }
+  
+  .related-contents {
+    overflow-x: visible; //显示隐藏的图标
+    padding-bottom: 15px;
+  }
+//----------------------------
+
+/*主页文章图片样式*/
+$image-scale: 1.2;
+.article-list article .article-image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  //不同显示器（手机，小屏幕电脑，大屏幕电脑）显示的图片高度大小
+  @include respond(sm) {
+    height: 305px;
+  }
+
+  @include respond(md) {
+    height: 305px;
+  }
+  @include respond(xl) {
+    height: 325px;
+  }
+}
+
+/*主页文章图片圆角*/
+.article-list article {
+  --card-border-radius: 24px;
+}
+
+/*文章标签圆角*/
+.article-category a, .article-tags a {
+  border-radius: 11px;
+}
+
+/*鼠标移动到文章图片放大*/
+.article-list article .article-image {
+  position: relative;
+  overflow: hidden; //不显示超出的部分
+}
+
+.article-list article .article-image img:hover {
+  transform: scale($image-scale); //放大尺寸
+}
+
+.article-list article .article-image img {
+  transition: transform 0.85s ease-in-out;//持续时间
+}
+//------------------------------------------
+/*文章内部-页脚-相关文章图片圆角*/
+.article-list--compact article .article-image img {
+    border-radius: 17%;
+  }
+  
+  
+  /*文章内部-页脚-相关文章图片放大动画*/
+  .article-list--compact article > a {
+    transition: .6s ease;
+  }
+  
+  .article-list--compact article > a:hover {
+    transform: scale(1.03, 1.03);
+    overflow: visible;
+  }
+//----------------------------------------
+
+  
+  /*手机模式下的菜单滚动条美化*/
+  .menu::-webkit-scrollbar {
+    display: none; //防止大屏幕时出现滚动条
+  }
+  
+  .sidebar header .site-name {
+    margin: 8px;
+    font-size: 2rem; //字体大小
+  }
+//----------------------
+/*------------------右侧导航栏--------------*/
+/*搜索菜单动画*/
+.search-form.widget {
+    transition: transform 0.6s ease;
+  }
+  
+  .search-form.widget:hover {
+    transform: scale(1.1, 1.1);
+  }
+  
+  
+  /*归档小图标放大动画*/
+  .widget.archives .widget-archive--list {
+    transition: transform .3s ease;
+  }
+  
+  .widget.archives .widget-archive--list:hover {
+    transform: scale(1.05, 1.05);
+  }
+  
+  
+  /*右侧标签放大动画*/
+  .tagCloud .tagCloud-tags a {
+    border-radius: 10px; //圆角
+    font-size: 1.4rem; //字体大小
+    font-family: var(--article-font-family); //字体
+    transition: transform 0.3s ease, background 0.3s ease; //动画时间
+    &:hover {
+      background: #b7d2ea7b; //背景颜色
+      transform: translateY(-5px); //上移
+    }
+  }
+//-----------------------------------
+/*----------------归档页面---------------*/
+/*归档页面卡片缩放*/
+.article-list--tile article {
+    transition: .6s ease;
+  }
+  
+  .article-list--tile article:hover {
+    transform: scale(1.03, 1.03);
+  }
+//------------------------------------
+/* 归档页面两栏 */
+@media (min-width: 1024px) {
+    .article-list--compact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: none;
+      box-shadow: none;
+      gap: 1rem;
+  
+      article {
+        background: var(--card-background);
+        border: none;
+        box-shadow: var(--shadow-l2);
+        margin-bottom: 8px;
+        border-radius: 16px;
+      }
+    }
+  }
+//-----------------------------------  
+/*--------------*-链接页面-----------------*/
+/*友情链接设置成三栏样式*/
+@media (min-width: 1024px) {
+    .article-list--compact.links {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: none;
+      box-shadow: none;
+      gap: 1rem;
+  
+      article {
+        background: var(--card-background);
+        border: none;
+        box-shadow: var(--shadow-l2);
+        margin-bottom: 8px;
+        border-radius: var(--card-border-radius);
+  
+        &:nth-child(odd) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+// mac代码块样式
+.article-content {
+    .highlight:before {
+      content: '';
+      display: block;
+      background: url(/code-header.svg);
+      height: 32px;
+      width: 100%;
+      background-size: 57px;
+      background-repeat: no-repeat;
+      margin-bottom: 5px;
+      background-position: -1px 2px;
+    }
+  }
+//-----------------------------
+
+//代码复制按钮
+.article-content .copyCodeButton {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  border-radius: 12px;
+  opacity: 1;
+  color: #303030;
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 500;
+}
+
+.article-content .languageCodeButton {
+  position: absolute;
+  border: none;
+  top: 9px;
+  right: 69px;
+  border-radius: 12px;
+  opacity: 1;
+  padding: 0 5px;
+  background: 0;
+  color: #303030;
+  font-family: lato;
+  font-size: 1.5rem;
+}
+// 代码块样式修改
+.highlight {
+  max-width: 102% !important;
+  background-color: var(--pre-background-color);
+  padding: var(--card-padding);
+  position: relative;
+  border-radius: 20px;
+  margin-left: -7px !important;
+  margin-right: -12px;
+  box-shadow: var(--shadow-l1) !important;
+
+  &:hover {
+    .copyCodeButton {
+      opacity: 1;
+    }
+  }
+
+  // keep Codeblocks LTR
+  [dir="rtl"] & {
+    direction: ltr;
+  }
+
+  pre {
+    margin: initial;
+    padding: 0;
+    margin: 0;
+    width: auto;
+  }
+}
+
+// light模式下的代码块样式调整
+[data-scheme="light"] .article-content .highlight {
+  background-color: #fff9f3;
+}
+
+[data-scheme="light"] .chroma {
+  color: #ff6f00;
+  background-color: #fff9f3cc;
+}
+//-------------------------------
+
+// dark模式下代码块样式调整
+[data-scheme="dark"] .article-content .highlight {
+  background-color: #222327;
+}
+
+[data-scheme="dark"] .chroma {
+  color: #f8f8f2;
+  background-color: #222327;
+}
+
+[data-scheme="dark"] .article-content .copyCodeButton {
+  color: #f8f8f2;
+}
+[data-scheme="dark"] .article-content .languageCodeButton {
+  color: #f8f8f2;
+}
