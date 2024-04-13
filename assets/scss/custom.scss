@@ -353,7 +353,7 @@ html {
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #D6DEE1;
+    background-color: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -371,7 +371,6 @@ html {
 //  ~\blog\assets\scss\custom.scss
 
 //--------------------------------------------------
-//归档页面双栏
 /* 归档页面两栏 */
 @media (min-width: 1024px) {
   .article-list--compact {
