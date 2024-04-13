@@ -252,17 +252,6 @@ a {
   font-size: 1.5rem;
   padding: 44px 25px 19px;
 }
-  /*右侧标签放大动画*/
-  .tagCloud .tagCloud-tags a {
-    border-radius: 10px; //圆角
-    font-size: 1.4rem; //字体大小
-    font-family: var(--article-font-family); //字体
-    transition: transform 0.3s ease, background 0.3s ease; //动画时间
-    &:hover {
-      background: #b7d2ea7b; //背景颜色
-      transform: translateY(-5px); //上移
-    }
-  }
 //-----------------------------------
 //  ~\blog\assets\scss\custom.scss
 
@@ -364,18 +353,18 @@ html {
   }
 
   ::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: #D6DEE1;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
+    background-color: rgba(111, 114, 115, 0.65);
     border-radius: 20px;
     border: 6px solid transparent;
     background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
+    background-color: #557697;
   }
 }
 //-----------------------------------------------------
@@ -517,7 +506,33 @@ html {
   }
 }
 //--------------------------------------------------
-//----------------------------------------------------------
+/*右侧标签放大动画*/
+.tagCloud .tagCloud-tags a {
+  border-radius: 10px; //圆角
+  font-size: 1.4rem; //字体大小
+  font-family: var(--article-font-family); //字体
+  transition: transform 0.3s ease, background 0.3s ease; //动画时间
+  &:hover {
+    background: #b7d2ea7b; //背景颜色
+    transform: translateY(-5px); //上移
+  }
+}
+/*搜索菜单动画*/
+.search-form.widget {
+transition: transform 0.6s ease;
+}
+
+.search-form.widget:hover {
+transform: scale(1.1, 1.1);
+}
+/*归档小图标放大动画*/
+.widget.archives .widget-archive--list {
+transition: transform .3s ease;
+}
+
+.widget.archives .widget-archive--list:hover {
+transform: scale(1.05, 1.05);
+}
 //为代码块顶部添加macos样式
 .article-content {
   .highlight:before {
